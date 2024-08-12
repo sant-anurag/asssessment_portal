@@ -9,7 +9,6 @@ def home(request):
     return render(request, 'exams/home.html', {'exams': exams})
 
 
-
 def take_exam(request, exam_id):
     exam = get_object_or_404(Exam, id=exam_id)
 
