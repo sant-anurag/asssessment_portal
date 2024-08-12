@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the Exam Portal</h1>
+    <p>This is the homepage of the Exam Portal.</p>
+
+    <h1>Available Exams</h1>
+
+        {% if exams %}
+            <ul>
+                {% for exam in exams %}
+                    <li>
+                        <strong>{{ exam.name }}</strong><br>
+                        Duration: {{ exam.duration }} minutes<br>
+                        <a href="{% url 'take_exam' exam.id %}">Start Exam</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No exams available at the moment.</p>
+        {% endif %}
+</body>
+</html>

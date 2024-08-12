@@ -1,0 +1,20 @@
+<h1>Welcome to the Exam Portal</h1>
+<p>Welcome</p>
+<h1>{{ exam.name }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {% for question in exam.questions.all %}
+        <h2>{{ question.question_text }}</h2>
+        {% if question.question_type == 'mc' %}
+            {% for choice in question.choice_set.all %}
+                <label>
+                    <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}">
+                    {{ choice.choice_text }}
+                </label><br>
+            {% endfor %}
+        {% elif question.question_type == 'text' %}
+            <textarea name="question_{{ question.id }}"></textarea><br>
+        {% endif %}
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
